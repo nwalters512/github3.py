@@ -198,3 +198,5 @@ Contributors
 - Kevin P. Fleming (@kpfleming)
 
 - Andrew Hayworth (@ahayworth)
+
+- Nathan Walters (@nwalters512)
