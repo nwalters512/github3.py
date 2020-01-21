@@ -640,7 +640,8 @@ class _Organization(models.GitHubCore):
         auto_init=False,
         gitignore_template="",
         license_template="",
-        has_projects=True
+        has_projects=True,
+        delete_branch_on_merge=False
     ):
         """Create a repository for this organization.
 
@@ -680,6 +681,9 @@ class _Organization(models.GitHubCore):
         :param bool has_projects:
             (optional), If ``True``, enable projects for this repository. API
             default: ``True``
+        :param bool delete_branch_on_merge:
+            (optional) If ``True``, head branches will automatically be deleted
+            when pull requests are merged. API default: ``False``
         :returns:
             the created repository
         :rtype:
@@ -696,7 +700,9 @@ class _Organization(models.GitHubCore):
             "license_template": license_template,
             "auto_init": auto_init,
             "gitignore_template": gitignore_template,
-            "has_projects": has_projects
+            "has_projects": has_projects,
+            "delete_branch_on_merge": delete_branch_on_merge
+
         }
         if int(team_id) > 0:
             data.update({"team_id": team_id})

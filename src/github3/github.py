@@ -681,7 +681,8 @@ class GitHub(models.GitHubCore):
         has_wiki=True,
         auto_init=False,
         gitignore_template="",
-        has_projects=True
+        has_projects=True,
+        delete_branch_on_merge=False
     ):
         """Create a repository for the authenticated user.
 
@@ -710,6 +711,9 @@ class GitHub(models.GitHubCore):
         :param bool has_projects:
             (optional), If ``True``, enable projects for this repository. API
             default: ``True``
+        :param bool delete_branch_on_merge:
+            (optional) If ``True``, head branches will automatically be deleted
+            when pull requests are merged. API default: ``False``
         :returns:
             created repository
         :rtype:
@@ -725,7 +729,8 @@ class GitHub(models.GitHubCore):
             "has_wiki": has_wiki,
             "auto_init": auto_init,
             "gitignore_template": gitignore_template,
-            "has_projects": has_projects
+            "has_projects": has_projects,
+            "delete_branch_on_merge": delete_branch_on_merge
         }
         json = self._json(self._post(url, data=data), 201)
         return self._instance_or_null(repo.Repository, json)
